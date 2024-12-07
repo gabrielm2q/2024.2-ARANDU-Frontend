@@ -1,7 +1,6 @@
-FROM node:18
+FROM node:22
 
 WORKDIR /src
-
 
 COPY package*.json ./
 
@@ -9,10 +8,11 @@ RUN npm install nodemon --save-dev
 
 RUN npm install
 
-COPY . .
+COPY . . 
+COPY .env .end
 
 RUN npm run build
 
 EXPOSE 4000
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "prod"]
