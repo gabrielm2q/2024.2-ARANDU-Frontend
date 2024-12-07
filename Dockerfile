@@ -9,7 +9,7 @@ RUN npm install nodemon --save-dev
 RUN npm install
 
 COPY . . 
-COPY .env .end
+COPY .env .env
 
 RUN npm run build
 
