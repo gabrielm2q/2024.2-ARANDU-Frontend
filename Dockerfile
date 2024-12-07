@@ -7,16 +7,17 @@ WORKDIR /app
 
 COPY package.json package-lock.json* ./
 RUN \
-  if [ -f package-lock.json ]; then npm ci && npm run build;\
+  if [ -f package-lock.json ]; then npm ci;\
   fi
 
 
 FROM base AS builder
 WORKDIR /app
-COPY --from=deps ./node_modules ./node_modules
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 COPY .env .env
+RUN npm run build
 
 FROM base AS runner
 WORKDIR /app
