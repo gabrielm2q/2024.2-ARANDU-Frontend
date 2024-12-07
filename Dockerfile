@@ -15,4 +15,4 @@ RUN npm run build
 
 EXPOSE 4000
 
-CMD ["npm", "run", "dev"]
+CMD ["next", "dev", "-p", "10000", "-h", "0.0.0.0"]
