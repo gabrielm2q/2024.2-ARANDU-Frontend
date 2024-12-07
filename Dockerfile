@@ -3,7 +3,6 @@ FROM node:22-alpine AS base
 FROM base AS deps
 RUN apk add --no-cache libc6-compat
 
-RUN mkdir app
 WORKDIR /app
 
 COPY package.json package-lock.json* ./
@@ -14,7 +13,7 @@ RUN \
 
 FROM base AS builder
 WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps ./node_modules ./node_modules
 COPY . .
 
 COPY .env .env
