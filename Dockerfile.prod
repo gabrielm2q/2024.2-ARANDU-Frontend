@@ -2,12 +2,12 @@ FROM node:22 AS base
 
 WORKDIR /src
 
-RUN npm install nodemon --save-dev
-
 COPY package.json package-lock.json* ./
 RUN \
   if [ -f package-lock.json ]; then npm ci; \
   fi
+
+RUN npm install nodemon --save-dev
 
 FROM base AS builder
 WORKDIR /src
